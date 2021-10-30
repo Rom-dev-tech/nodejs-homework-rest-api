@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const contactsOperations = require('../../model/contacts')
+const contactsOperations = require('../../../model/contacts')
 const joiSchema = require('./joiSchema')
 const { notFound, badRequest } = require('./httpErrors')
 
