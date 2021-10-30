@@ -1,15 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { NotFound, BadRequest } = require('http-errors')
-const Joi = require('joi')
-
 const contactsOperations = require('../../model/contacts')
-
-const joiSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-})
+const joiSchema = require('./joiSchema')
+const { notFound, badRequest } = require('./httpErrors')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -32,7 +25,7 @@ router.get('/:contactId', async (req, res, next) => {
     const result = await contactsOperations.getContactById(contactId)
 
     if (!result) {
-      throw new NotFound(`Contact with id=${contactId} not found`)
+      notFound(contactId)
     }
 
     res.json({
@@ -52,7 +45,7 @@ router.post('/', async (req, res, next) => {
     const { error } = joiSchema.validate(req.body)
 
     if (error) {
-      throw new BadRequest(error.message)
+      badRequest(error)
     }
 
     const result = await contactsOperations.addContact(req.body)
@@ -74,7 +67,7 @@ router.delete('/:contactId', async (req, res, next) => {
     const result = await contactsOperations.removeContact(contactId)
 
     if (!result) {
-      throw new NotFound(`Contact with id=${contactId} not found`)
+      notFound(contactId)
     }
     res.json({
       status: 'success',
@@ -91,14 +84,14 @@ router.put('/:contactId', async (req, res, next) => {
     const { error } = joiSchema.validate(req.body)
 
     if (error) {
-      throw new BadRequest(error.message)
+      badRequest(error)
     }
 
     const { contactId } = req.params
     const result = await contactsOperations.updateContact(contactId, req.body)
 
     if (!result) {
-      throw new NotFound(`Contact with id=${contactId} nor found`)
+      notFound(contactId)
     }
 
     res.json({
