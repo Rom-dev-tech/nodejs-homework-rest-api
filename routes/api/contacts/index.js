@@ -1,3 +1,3 @@
-const contactsControllers = require('./contacts')
+const router = require('./contacts')
 
-module.exports = contactsControllers
+module.exports = router
