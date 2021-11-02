@@ -1,7 +1,7 @@
 const express = require('express')
-const contactsSchema = require('./contactsSchema')
-const { controllerWrapper, validation } = require('../../../middlewares')
-const ctrl = require('./controllers')
+const contactsSchema = require('../../joiSchemas/contacts/contactsSchema')
+const { controllerWrapper, validation } = require('../../middlewares')
+const ctrl = require('../../controllers/contacts')
 
 const router = express.Router()
 
