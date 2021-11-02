@@ -1,18 +1,17 @@
-const { notFound } = require('./httpErrors')
 const contactsOperations = require('../../../model/contacts')
-const { sendSuccessRes } = require('../../../helpers')
+const { sendSuccessRes, notFound } = require('../../../helpers')
 
 const listContacts = async (req, res) => {
   const result = await contactsOperations.listContacts()
   sendSuccessRes(res, { result })
 }
 
-const getContactById = async (req, res) => {
+const getContactById = async (req, res, next) => {
   const { contactId } = req.params
   const result = await contactsOperations.getContactById(contactId)
 
   if (!result) {
-    notFound(contactId)
+    return notFound(contactId, next)
   }
 
   sendSuccessRes(res, { result })
@@ -23,23 +22,23 @@ const addContact = async (req, res) => {
   sendSuccessRes(res, { result }, 201)
 }
 
-const updateContact = async (req, res) => {
+const updateContact = async (req, res, next) => {
   const { contactId } = req.params
   const result = await contactsOperations.updateContact(contactId, req.body)
 
   if (!result) {
-    notFound(contactId)
+    return notFound(contactId, next)
   }
 
   sendSuccessRes(res, { result })
 }
 
-const removeContact = async (req, res) => {
+const removeContact = async (req, res, next) => {
   const { contactId } = req.params
   const result = await contactsOperations.removeContact(contactId)
 
   if (!result) {
-    notFound(contactId)
+    return notFound(contactId, next)
   }
 
   sendSuccessRes(res, { message: 'contact deleted' })
