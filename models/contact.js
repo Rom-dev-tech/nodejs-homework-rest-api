@@ -31,12 +31,18 @@ const contactSchema = Schema(
   { versionKey: false }
 )
 
-const contactsJoiSchema = Joi.object({
-  name: Joi.string().max(30).pattern(patternName).required(),
-  email: Joi.string().email({ minDomainSegments: 2 }).required(),
-  phone: Joi.string().max(15).pattern(patternPhone).required(),
-  favorite: Joi.boolean()
-})
+const contactsJoiSchema = (contact, requireFields = []) => {
+  let validateContact = Joi.object({
+    name: Joi.string().max(30).pattern(patternName, 'name'),
+    email: Joi.string().email({ minDomainSegments: 2 }),
+    phone: Joi.string().max(15).pattern(patternPhone, 'phone'),
+    favorite: Joi.boolean()
+  })
+
+  validateContact = validateContact.fork(requireFields, (field) => field.required())
+
+  return validateContact.validate(contact)
+}
 
 const Contact = model('contact', contactSchema)
 
