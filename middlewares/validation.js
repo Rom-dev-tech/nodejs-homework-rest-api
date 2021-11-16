@@ -1,4 +1,4 @@
-const { badRequest } = require('../helpers')
+const { badRequest } = require('../utils')
 const { contactsJoiSchema } = require('../models')
 
 const validation = (requireFields = []) => {

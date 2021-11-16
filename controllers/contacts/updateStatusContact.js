@@ -1,5 +1,5 @@
 const { Contact } = require('../../models')
-const { sendSuccessRes, notFound } = require('../../helpers')
+const { sendSuccessRes, notFound } = require('../../utils')
 
 const updateStatusContact = async (req, res, next) => {
   const { contactId } = req.params
