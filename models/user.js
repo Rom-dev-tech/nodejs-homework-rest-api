@@ -37,7 +37,7 @@ const userSchema = Schema(
       default: null,
     },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 )
 
 userSchema.methods.setPassword = function (password) {

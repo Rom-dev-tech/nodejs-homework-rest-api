@@ -27,8 +27,12 @@ const contactSchema = Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 )
 
 const contactsJoiSchema = (contact, requireFields = []) => {

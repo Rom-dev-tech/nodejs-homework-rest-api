@@ -9,4 +9,8 @@ const requireFields = ['email', 'password']
 
 router.post('/signup', validation(userJoiShema, requireFields), controllerWrapper(ctrl.signup))
 
+router.post(
+  '/signin',
+  validation(userJoiShema, requireFields), controllerWrapper(ctrl.signin))
+
 module.exports = router
