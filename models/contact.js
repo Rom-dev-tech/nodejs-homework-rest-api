@@ -1,17 +1,17 @@
 const { Schema, model } = require('mongoose')
 const Joi = require('joi')
 
-const patternName =
+const codeRegexName =
   /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/
 
-const patternPhone =
+const codeRegexPhone =
   /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/
 
 const contactSchema = Schema(
   {
     name: {
       type: String,
-      match: patternName,
+      match: codeRegexName,
       require: [true, 'Set name for contact'],
     },
     email: {
@@ -20,7 +20,7 @@ const contactSchema = Schema(
     },
     phone: {
       type: String,
-      match: patternPhone,
+      match: codeRegexPhone,
       require: true,
     },
     favorite: {
@@ -33,10 +33,10 @@ const contactSchema = Schema(
 
 const contactsJoiSchema = (contact, requireFields = []) => {
   let validateContact = Joi.object({
-    name: Joi.string().max(30).pattern(patternName, 'name'),
+    name: Joi.string().max(30).pattern(codeRegexName, 'name'),
     email: Joi.string().email({ minDomainSegments: 2 }),
-    phone: Joi.string().max(15).pattern(patternPhone, 'phone'),
-    favorite: Joi.boolean()
+    phone: Joi.string().max(15).pattern(codeRegexPhone, 'phone'),
+    favorite: Joi.boolean(),
   })
 
   validateContact = validateContact.fork(requireFields, (field) => field.required())
