@@ -11,5 +11,5 @@ module.exports = {
   notFound,
   badRequest,
   conflict,
-  unauthorized,
+  unauthorized
 }
