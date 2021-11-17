@@ -1,23 +1,20 @@
 const { Contact } = require('../../models')
 const { sendSuccessRes, notFound } = require('../../utils')
+const { authenticateContact } = require('../../middlewares')
 
 const removeContact = async (req, res, next) => {
   const { contactId } = req.params
   const { email } = req.user
 
-  const validation = await Contact.findById(contactId).populate(
-    'owner',
-    '_id email'
-  )
+  const validationUser = await authenticateContact(contactId, email)
 
-  if (!validation || email !== validation.owner.email) {
+  if (!validationUser) {
     return notFound(contactId, next)
   }
 
-  const result = await Contact.findByIdAndRemove(contactId).populate(
-    'owner',
-    '_id email'
-  )
+  const result = await Contact.findByIdAndRemove(contactId)
+    .populate('owner', '_id email')
+
   const { _id, owner } = result
 
   sendSuccessRes(res, { message: 'contact deleted', delete_id: _id, owner })
