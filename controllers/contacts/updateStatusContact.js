@@ -7,9 +7,9 @@ const updateStatusContact = async (req, res, next) => {
   const { favorite } = req.body
   const { email } = req.user
 
-  const validationUser = await authenticateContact(contactId, email)
+  const validateUser = await authenticateContact(contactId, email)
 
-  if (!validationUser) {
+  if (!validateUser) {
     return notFound(contactId, next)
   }
 
