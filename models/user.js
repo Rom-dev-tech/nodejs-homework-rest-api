@@ -52,7 +52,7 @@ const userJoiShema = (contact, requireFields = []) => {
   let validateContact = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2 }),
     password: Joi.string().pattern(codeRegexPass, 'password'),
-    subscription: Joi.string(),
+    subscription: Joi.string().valid('starter', 'pro', 'business'),
   })
 
   validateContact = validateContact.fork(requireFields, (field) =>

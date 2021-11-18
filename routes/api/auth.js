@@ -6,6 +6,7 @@ const { userJoiShema } = require('../../models/user')
 const router = express.Router()
 
 const requireFields = ['email', 'password']
+const requireField = ['subscription']
 
 router.post(
   '/signup', validation(userJoiShema, requireFields), controllerWrapper(ctrl.signup))
@@ -16,5 +17,10 @@ router.post(
 router.get('/logout', authenticate, controllerWrapper(ctrl.logout))
 
 router.get('/current', authenticate, controllerWrapper(ctrl.current))
+
+router.patch(
+  '/',
+  authenticate,
+  validation(userJoiShema, requireField), controllerWrapper(ctrl.updateSubscriptionUser))
 
 module.exports = router
