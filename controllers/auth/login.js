@@ -4,7 +4,7 @@ const { unauthorized, sendSuccessRes } = require('../../utils')
 
 const { SECRET_KEY } = process.env
 
-const signin = async (req, res, next) => {
+const login = async (req, res, next) => {
   const { email, password } = req.body
   const user = await User.findOne({ email })
 
@@ -13,7 +13,7 @@ const signin = async (req, res, next) => {
   }
 
   const payload = {
-    id: user._id
+    id: user._id,
   }
 
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '12h' })
@@ -30,4 +30,4 @@ const signin = async (req, res, next) => {
   sendSuccessRes(res, ResponseBody)
 }
 
-module.exports = signin
+module.exports = login

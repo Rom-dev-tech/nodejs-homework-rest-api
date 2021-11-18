@@ -19,23 +19,17 @@ router.get('/:contactId', authenticate, controllerWrapper(ctrl.getContactById))
 router.post(
   '/',
   authenticate,
-  validation(contactsJoiSchema, requireFields),
-  controllerWrapper(ctrl.addContact)
-)
+  validation(contactsJoiSchema, requireFields), controllerWrapper(ctrl.addContact))
 
 router.put(
   '/:contactId',
   authenticate,
-  validation(contactsJoiSchema, requireFields),
-  controllerWrapper(ctrl.updateContact)
-)
+  validation(contactsJoiSchema, requireFields), controllerWrapper(ctrl.updateContact))
 
 router.patch(
   '/:contactId/favorite',
   authenticate,
-  validation(contactsJoiSchema, requireField),
-  controllerWrapper(ctrl.updateStatusContact)
-)
+  validation(contactsJoiSchema, requireField), controllerWrapper(ctrl.updateStatusContact))
 
 router.delete(
   '/:contactId',
