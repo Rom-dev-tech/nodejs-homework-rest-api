@@ -1,9 +1,5 @@
 const express = require('express')
-const {
-  controllerWrapper,
-  validation,
-  authenticate,
-} = require('../../middlewares')
+const { controllerWrapper, validation, authenticate } = require('../../middlewares')
 const { contacts: ctrl } = require('../../controllers')
 const { contactsJoiSchema } = require('../../models/contact')
 
@@ -31,10 +27,6 @@ router.patch(
   authenticate,
   validation(contactsJoiSchema, requireField), controllerWrapper(ctrl.updateStatusContact))
 
-router.delete(
-  '/:contactId',
-  authenticate,
-  controllerWrapper(ctrl.removeContact)
-)
+router.delete('/:contactId', authenticate, controllerWrapper(ctrl.removeContact))
 
 module.exports = router

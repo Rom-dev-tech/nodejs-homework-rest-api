@@ -1,5 +1,5 @@
+const { Conflict } = require('http-errors')
 const { User } = require('../../models')
-const { conflict } = require('../../utils/httpErrors')
 const { sendSuccessRes } = require('../../utils')
 
 const signup = async (req, res, next) => {
@@ -7,7 +7,7 @@ const signup = async (req, res, next) => {
   const user = await User.findOne({ email })
 
   if (user) {
-    return conflict(next)
+    return next(new Conflict('Email in use'))
   }
   const newUser = new User({ email })
 
@@ -15,12 +15,7 @@ const signup = async (req, res, next) => {
 
   await newUser.save()
 
-  const ResponseBody = {
-    user: {
-      email,
-      subscription: 'starter',
-    },
-  }
+  const ResponseBody = { user: { email, subscription: 'starter' } }
 
   sendSuccessRes(res, ResponseBody, 201)
 }

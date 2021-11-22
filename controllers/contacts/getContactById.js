@@ -1,15 +1,16 @@
 const { Contact } = require('../../models')
-const { sendSuccessRes, notFound } = require('../../utils')
+const { NotFound } = require('http-errors')
+const { sendSuccessRes } = require('../../utils')
 
 const getContactById = async (req, res, next) => {
   const { contactId } = req.params
-  const { email } = req.user
+  const { _id } = req.user
 
   const result = await Contact.findById(contactId)
     .populate('owner', '_id email')
 
-  if (!result || email !== result.owner.email) {
-    return notFound(contactId, next)
+  if (!result || String(_id) !== String(result.owner._id)) {
+    return next(new NotFound(`Contact with id=${contactId} not found`))
   }
 
   sendSuccessRes(res, { result })
