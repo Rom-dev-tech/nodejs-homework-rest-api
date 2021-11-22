@@ -6,10 +6,10 @@ const getContactById = async (req, res, next) => {
   const { contactId } = req.params
   const { _id } = req.user
 
-  const result = await Contact.findById(contactId)
+  const result = await Contact.findOne({ owner: _id, _id: contactId })
     .populate('owner', '_id email')
 
-  if (!result || String(_id) !== String(result.owner._id)) {
+  if (!result) {
     return next(new NotFound(`Contact with id=${contactId} not found`))
   }
 

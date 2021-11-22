@@ -6,13 +6,12 @@ const removeContact = async (req, res, next) => {
   const { contactId } = req.params
   const { _id } = req.user
 
-  const checkContact = await Contact.findById(contactId)
+  const result = await Contact.findOneAndRemove({ owner: _id, _id: contactId })
+    .populate('owner', '_id email')
 
-  if (!checkContact || String(_id) !== String(checkContact.owner._id)) {
+  if (!result) {
     return next(new NotFound(`Contact with id=${contactId} not found`))
   }
-
-  const result = await Contact.findByIdAndRemove(contactId).populate('owner', '_id email')
 
   const { owner } = result
 

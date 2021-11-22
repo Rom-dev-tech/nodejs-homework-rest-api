@@ -7,14 +7,13 @@ const updateStatusContact = async (req, res, next) => {
   const { favorite } = req.body
   const { _id } = req.user
 
-  const checkContact = await Contact.findById(contactId)
+  const result = await Contact.findOneAndUpdate({ owner: _id, _id: contactId },
+    { favorite }, { new: true })
+    .populate('owner', '_id email')
 
-  if (!checkContact || String(_id) !== String(checkContact.owner._id)) {
+  if (!result) {
     return next(new NotFound(`Contact with id=${contactId} not found`))
   }
-
-  const result = await Contact.findByIdAndUpdate(contactId, { favorite }, { new: true })
-    .populate('owner', '_id email')
 
   sendSuccessRes(res, { result })
 }
