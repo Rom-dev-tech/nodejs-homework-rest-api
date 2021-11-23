@@ -1,12 +1,11 @@
-const { badRequest } = require('../helpers')
-const { contactsJoiSchema } = require('../models')
+const { BadRequest } = require('http-errors')
 
-const validation = (requireFields = []) => {
+const validation = (joiSchema, requireFields = []) => {
   return async (req, _, next) => {
-    const { error } = contactsJoiSchema(req.body, requireFields)
+    const { error } = joiSchema(req.body, requireFields)
 
     if (error) {
-      return badRequest(error, next)
+      return next(new BadRequest(error.message))
     }
     next()
   }
