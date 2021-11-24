@@ -9,7 +9,7 @@ const avatarsDir = path.join(__dirname, '../../public/avatars')
 
 const updateAvatar = async (req, res, next) => {
   if (!req.file) {
-    return next(new BadRequest('Error loading file'))
+    return next(new BadRequest('Error upload file'))
   }
 
   const { _id } = req.user
@@ -30,7 +30,7 @@ const updateAvatar = async (req, res, next) => {
 
     await User.findByIdAndUpdate(_id, { avatarURL: avatar })
 
-    sendSuccessRes(res, { avatarURL: avatar })
+    sendSuccessRes(res, { message: 'File uploaded successfully', avatarURL: avatar })
   } catch (error) {
     await fs.unlink(tmpUpload)
     throw error
