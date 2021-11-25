@@ -5,13 +5,12 @@ const { sendSuccessRes } = require('../../utils')
 const verify = async (req, res, next) => {
   const { verificationToken } = req.params
 
-  const user = await User.findOne({ verificationToken })
+  const result = await User.findOneAndUpdate(
+    { verificationToken }, { verificationToken: false, verify: true })
 
-  if (!user) {
+  if (!result) {
     return next(new NotFound('User not found'))
   }
-
-  await User.findByIdAndUpdate(user._id, { verificationToken: null, verify: true })
 
   sendSuccessRes(res, { message: 'Verification successful' })
 }
