@@ -19,12 +19,12 @@ const userSchema = Schema(
   {
     password: {
       type: String,
-      required: [true, 'Password is required'],
+      required: [true, 'missing required field password'],
       math: codeRegexPass,
     },
     email: {
       type: String,
-      required: [true, 'Email is required'],
+      required: [true, 'missing required field email'],
       unique: true,
     },
     subscription: {
@@ -38,6 +38,14 @@ const userSchema = Schema(
     },
     avatarURL: {
       type: String,
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, 'Verify token is required'],
     },
   },
   { versionKey: false, timestamps: true }
