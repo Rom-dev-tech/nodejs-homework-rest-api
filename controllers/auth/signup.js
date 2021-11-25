@@ -7,19 +7,18 @@ const signup = async (req, res, next) => {
   const { email, password } = req.body
   const user = await User.findOne({ email })
 
-  const avatar = gravatar.url(email)
+  const avatarURL = gravatar.url(email, { protocol: 'https', s: '250' })
 
   if (user) {
     return next(new Conflict('Email in use'))
   }
-  const newUser = new User({ email })
+  const newUser = new User({ email, avatarURL })
 
   newUser.setPassword(password)
-  newUser.setAvatarURL(avatar)
 
   await newUser.save()
 
-  const ResponseBody = { user: { email, subscription: 'starter', avatarURL: avatar } }
+  const ResponseBody = { user: { email, subscription: 'starter', avatarURL } }
 
   sendSuccessRes(res, ResponseBody, 201)
 }

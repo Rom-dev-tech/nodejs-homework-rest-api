@@ -43,10 +43,6 @@ const userSchema = Schema(
   { versionKey: false, timestamps: true }
 )
 
-userSchema.methods.setAvatarURL = function (avatar) {
-  this.avatarURL = avatar
-}
-
 userSchema.methods.setPassword = function (password) {
   this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
 }
