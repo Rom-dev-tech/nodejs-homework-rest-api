@@ -1,5 +1,4 @@
-
-## hw-03-mongodb
+# hw-03-mongodb
 
 
 ### Commands:

@@ -1,9 +1,12 @@
 const { Contact } = require('../../models')
 const { sendSuccessRes, notFound } = require('../../helpers')
 
-const updateContact = async (req, res, next) => {
+const updateStatusContact = async (req, res, next) => {
   const { contactId } = req.params
-  const result = await Contact.findByIdAndUpdate(contactId, req.body, { new: true })
+  const { favorite } = req.body
+  const result = await Contact.findByIdAndUpdate(contactId, { favorite }, {
+    new: true,
+  })
 
   if (!result) {
     return notFound(contactId, next)
@@ -12,4 +15,4 @@ const updateContact = async (req, res, next) => {
   sendSuccessRes(res, { result })
 }
 
-module.exports = updateContact
+module.exports = updateStatusContact
