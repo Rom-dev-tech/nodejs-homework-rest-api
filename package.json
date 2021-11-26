@@ -1,5 +1,7 @@
 {
-  "name": "hw-03-mongodb",
+
+  "name": "hw-04-auth",
+
   "version": "0.0.0",
   "private": true,
   "scripts": {
