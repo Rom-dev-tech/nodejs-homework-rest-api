@@ -1,5 +1,4 @@
-
-# hw-04-auth
+# hw05-avatars
 
 
 ### Commands:
