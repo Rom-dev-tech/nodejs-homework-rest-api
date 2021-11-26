@@ -1,21 +1,15 @@
-const { NotFound } = require('http-errors')
-const { Contact } = require('../../models')
-const { sendSuccessRes } = require('../../utils')
+const contactsOperations = require('../../model/contacts')
+const { sendSuccessRes, notFound } = require('../../helpers')
 
 const removeContact = async (req, res, next) => {
   const { contactId } = req.params
-  const { _id } = req.user
-
-  const result = await Contact.findOneAndRemove({ owner: _id, _id: contactId })
-    .populate('owner', '_id email')
+  const result = await contactsOperations.removeContact(contactId)
 
   if (!result) {
-    return next(new NotFound(`Contact with id=${contactId} not found`))
+    return notFound(contactId, next)
   }
 
-  const { owner } = result
-
-  sendSuccessRes(res, { message: 'contact deleted', delete_id: contactId, owner })
+  sendSuccessRes(res, { message: 'contact deleted' })
 }
 
 module.exports = removeContact
