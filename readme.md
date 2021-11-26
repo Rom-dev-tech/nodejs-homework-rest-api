@@ -14,7 +14,7 @@ Create your own branch for each homework.
 - `hw05-avatars` &mdash; https://github.com/Rom-dev-tech/nodejs-homework-rest-api/tree/hw05-avatars
 - `hw06-email` &mdash; https://github.com/Rom-dev-tech/nodejs-homework-rest-api/tree/hw06-email
 
-Each new branch for dz should be done with main
+Each new branch for hw should be done with main
 
 After you've finished doing your homework on your branch, you need to make a pull request (PR). Then add a mentor to review the code. Only after the mentor approves the PR, you can merge the branch with the master's homework.
 
