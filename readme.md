@@ -1,56 +1,31 @@
-### Commands:
+## GoIT Node.js Course Template Homework
 
-- `npm start` &mdash; starting the server in production mode
-- `npm run start:dev` &mdash; starting the server in development mode
+Выполните форк этого репозитория для выполнения домашних заданий (2-6)
+Форк создаст репозиторий на вашем http://github.com
 
-<br/>
+Добавьте ментора в коллаборацию
 
-# hw-01-json
+Для каждой домашней работы создавайте свою ветку.
 
-<br/>
+- hw02
+- hw03
+- hw04
+- hw05
+- hw06
 
-## list
+Каждая новая ветка для дз должна делаться с master
 
-![Screen - list](/images/contactsList.png)
+После того как вы закончили выполнять домашнее задание в своей ветке, необходимо сделать пулл-реквест (PR). Потом добавить ментора для ревью кода. Только после того как ментор заапрувит PR, вы можете выполнить мердж ветки с домашним заданием в мастер.
 
-<br/>
+Внимательно читайте комментарии ментора. Исправьте замечания и сделайте коммит в ветке с домашним заданием. Изменения подтянуться в PR автоматически после того как вы отправите коммит с исправлениями на github
+После исправления снова добавьте ментора на ревью кода.
 
-## get
+- При сдаче домашней работы есть ссылка на PR
+- JS-код чистый и понятный, для форматирования используется Prettier
 
-![Screen - get](/images/get.png)
+### Команды:
 
-<br/>
-
-## get with wrong id
-
-![Screen - get whit wrong id](/images/get-with-wrong-id.png)
-
-<br/>
-
-## add
-
-![Screen - add](/images/add.png)
-
-<br/>
-
-## update
-
-![Screen - update](/images/update.png)
-
-<br/>
-
-## update with wrong id
-
-![Screen - update with wrong id](/images/update-with-wrong-id.png)
-
-<br/>
-
-## remove
-
-![Screen - remove](/images/remove.png)
-
-<br/>
-
-## remove with wrong id
-
-![Screen - remove with wrong id](/images/remove-with-wrong-id.png)
+- `npm start` &mdash; старт сервера в режиме production
+- `npm run start:dev` &mdash; старт сервера в режиме разработки (development)
+- `npm run lint` &mdash; запустить выполнение проверки кода с eslint, необходимо выполнять перед каждым PR и исправлять все ошибки линтера
+- `npm lint:fix` &mdash; та же проверка линтера, но с автоматическими исправлениями простых ошибок
