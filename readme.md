@@ -1,4 +1,4 @@
-# hw05-avatars
+# hw-05-avatars
 
 
 ### Commands:
