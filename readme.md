@@ -1,3 +1,10 @@
+### Commands:
+
+- `npm start` &mdash; starting the server in production mode
+- `npm run start:dev` &mdash; starting the server in development mode
+
+<br/>
+
 # hw-01-json
 
 <br/>
