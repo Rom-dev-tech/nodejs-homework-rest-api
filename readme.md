@@ -1,10 +1,3 @@
-### Commands:
-
-- `npm start` &mdash; starting the server in production mode
-- `npm run start:dev` &mdash; starting the server in development mode
-
-<br/>
-
 # hw-01-json
 
 <br/>
@@ -54,3 +47,10 @@
 ## remove with wrong id
 
 ![Screen - remove with wrong id](/images/remove-with-wrong-id.png)
+
+<br/>
+
+### Commands:
+
+- `npm start` &mdash; starting the server in production mode
+- `npm run start:dev` &mdash; starting the server in development mode
