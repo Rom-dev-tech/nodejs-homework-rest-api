@@ -1,5 +1,4 @@
-# hw05-avatars
-
+# hw06-email
 
 ### Commands:
 
