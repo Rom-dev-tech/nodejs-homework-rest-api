@@ -1,17 +1,12 @@
-const { NotFound } = require('http-errors')
-const { Contact } = require('../../models')
-const { sendSuccessRes } = require('../../utils')
+const contactsOperations = require('../../model/contacts')
+const { sendSuccessRes, notFound } = require('../../helpers')
 
 const updateContact = async (req, res, next) => {
   const { contactId } = req.params
-  const { _id } = req.user
-
-  const result = await Contact.findOneAndUpdate({ owner: _id, _id: contactId }, req.body,
-    { new: true })
-    .populate('owner', '_id email')
+  const result = await contactsOperations.updateContact(contactId, req.body)
 
   if (!result) {
-    return next(new NotFound(`Contact with id=${contactId} not found`))
+    return notFound(contactId, next)
   }
 
   sendSuccessRes(res, { result })

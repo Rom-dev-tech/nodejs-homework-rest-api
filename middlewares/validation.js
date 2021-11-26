@@ -1,11 +1,11 @@
-const { BadRequest } = require('http-errors')
+const { badRequest } = require('../helpers')
 
-const validation = (joiSchema, requireFields = []) => {
+const validation = (schema) => {
   return async (req, _, next) => {
-    const { error } = joiSchema(req.body, requireFields)
+    const { error } = schema.validate(req.body)
 
     if (error) {
-      return next(new BadRequest(error.message))
+      return badRequest(error, next)
     }
     next()
   }
