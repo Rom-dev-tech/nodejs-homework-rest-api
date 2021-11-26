@@ -1,11 +1,8 @@
-const { Contact } = require('../../models')
-const { sendSuccessRes } = require('../../utils')
+const contactsOperations = require('../../model/contacts')
+const { sendSuccessRes } = require('../../helpers')
 
 const addContact = async (req, res) => {
-  const newContact = { ...req.body, owner: req.user._id }
-
-  const result = await Contact.create(newContact)
-
+  const result = await contactsOperations.addContact(req.body)
   sendSuccessRes(res, { result }, 201)
 }
 

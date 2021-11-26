@@ -1,7 +1,8 @@
 const sendSuccessRes = require('./sendSuccessRes')
-const sendMail = require('./sendMail')
+const { notFound, badRequest } = require('./httpErrors')
 
 module.exports = {
   sendSuccessRes,
-  sendMail,
+  notFound,
+  badRequest,
 }
