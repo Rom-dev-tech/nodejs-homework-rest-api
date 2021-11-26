@@ -1,8 +1,49 @@
-# hw-02-express
+# hw - hw-01-json
 
-### Commands:
+<br/>
 
-- `npm start` &mdash; starting the server in production mode
-- `npm run start:dev` &mdash; starting the server in development mode
-- `npm run lint` &mdash; run code check execution with eslint, must be done before each PR and fix all linter errors
-- `npm lint:fix` &mdash; the same linter check, but with automatic fixes for simple errors
+## list
+
+![Screen - list](/images/contactsList.png)
+
+<br/>
+
+## get
+
+![Screen - get](/images/get.png)
+
+<br/>
+
+## get with wrong id
+
+![Screen - get whit wrong id](/images/get-with-wrong-id.png)
+
+<br/>
+
+## add
+
+![Screen - add](/images/add.png)
+
+<br/>
+
+## update
+
+![Screen - update](/images/update.png)
+
+<br/>
+
+## update with wrong id
+
+![Screen - update with wrong id](/images/update-with-wrong-id.png)
+
+<br/>
+
+## remove
+
+![Screen - remove](/images/remove.png)
+
+<br/>
+
+## remove with wrong id
+
+![Screen - remove with wrong id](/images/remove-with-wrong-id.png)
